@@ -73,6 +73,14 @@ pub fn show_init_command_help() {
     println!("Example:");
     println!("passger init");
 }
+pub fn show_list_command_help() {
+    println!("Listing your vault as a table. Showing only public information.");
+    println!("Usage: passger list [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("Example:");
+    println!("passger list");
+}
 
 pub fn show_command_title(command: &str) {
     println!("");

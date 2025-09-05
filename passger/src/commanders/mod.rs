@@ -1,5 +1,3 @@
-pub mod add;
-pub mod init;
-
-pub use add::*;
-pub use init::*;
+jli::dis_import!(add);
+jli::dis_import!(init);
+jli::dis_import!(list);

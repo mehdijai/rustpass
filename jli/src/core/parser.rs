@@ -1,17 +1,17 @@
-use crate::core::{AddCommand, InitCommand, parse_add_command, parse_init_command};
+use crate::core as JLI;
 use std::env;
 
 pub enum Commands {
     Help,
     Version,
-    Init(Result<InitCommand, String>),
-    Create(Result<AddCommand, String>),
-    Add(Result<AddCommand, String>),
-    List(Result<AddCommand, String>),
-    Show(Result<AddCommand, String>),
-    Delete(Result<AddCommand, String>),
-    Update(Result<AddCommand, String>),
-    UpdateMaster(Result<AddCommand, String>),
+    Add(Result<JLI::AddCommand, String>),
+    Init(Result<JLI::InitCommand, String>),
+    List(Result<JLI::ListCommand, String>),
+    Show(Result<JLI::AddCommand, String>),
+    Create(Result<JLI::AddCommand, String>),
+    Delete(Result<JLI::AddCommand, String>),
+    Update(Result<JLI::AddCommand, String>),
+    UpdateMaster(Result<JLI::AddCommand, String>),
 }
 
 pub fn parse_commands() -> Commands {
@@ -20,15 +20,15 @@ pub fn parse_commands() -> Commands {
         ArgCommands::Help => Commands::Help,
         ArgCommands::Version => Commands::Help,
         ArgCommands::NoCommand => Commands::Help,
-        ArgCommands::Init(args) => Commands::Init(match_command(args, parse_init_command)),
-        ArgCommands::Create(args) => Commands::Create(match_command(args, parse_add_command)),
-        ArgCommands::Add(args) => Commands::Add(match_command(args, parse_add_command)),
-        ArgCommands::List(args) => Commands::List(match_command(args, parse_add_command)),
-        ArgCommands::Show(args) => Commands::Show(match_command(args, parse_add_command)),
-        ArgCommands::Delete(args) => Commands::Delete(match_command(args, parse_add_command)),
-        ArgCommands::Update(args) => Commands::Update(match_command(args, parse_add_command)),
+        ArgCommands::Init(args) => Commands::Init(match_command(args, JLI::parse_init_command)),
+        ArgCommands::Create(args) => Commands::Create(match_command(args, JLI::parse_add_command)),
+        ArgCommands::Add(args) => Commands::Add(match_command(args, JLI::parse_add_command)),
+        ArgCommands::List(args) => Commands::List(match_command(args, JLI::parse_list_command)),
+        ArgCommands::Show(args) => Commands::Show(match_command(args, JLI::parse_add_command)),
+        ArgCommands::Delete(args) => Commands::Delete(match_command(args, JLI::parse_add_command)),
+        ArgCommands::Update(args) => Commands::Update(match_command(args, JLI::parse_add_command)),
         ArgCommands::UpdateMaster(args) => {
-            Commands::UpdateMaster(match_command(args, parse_add_command))
+            Commands::UpdateMaster(match_command(args, JLI::parse_add_command))
         }
     }
 }

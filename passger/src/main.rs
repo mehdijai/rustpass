@@ -12,6 +12,7 @@ fn main() {
         JLI::Commands::Version => JLI::show_version(),
         JLI::Commands::Add(command) => Commanders::add_commander(command),
         JLI::Commands::Init(command) => Commanders::init_commander(command),
+        JLI::Commands::List(command) => Commanders::list_commander(command),
         _ => JLI::show_help(),
     }
 
