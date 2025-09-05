@@ -4,6 +4,10 @@ use commanders as Commanders;
 use jli::core as JLI;
 
 fn main() {
+    run();
+}
+
+fn run() {
     JLI::show_welcome();
     let command = JLI::parse_commands();
 

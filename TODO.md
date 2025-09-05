@@ -15,6 +15,7 @@
   - [x] Command Dispatcher
 - [ ] DB
   - [ ] DB Manager
+- [ ] Encryption Service
 - [ ] Core
   - [ ] Init
   - [ ] List

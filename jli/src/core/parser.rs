@@ -115,3 +115,32 @@ fn parse_options(args: &Vec<String>) -> Vec<(String, Option<String>)> {
 
     params_options
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_options() {
+        let args = vec![
+            "-f".to_string(),
+            "value1".to_string(),
+            "-s".to_string(),
+            "value2".to_string(),
+            "-b".to_string(),
+            "-t".to_string(),
+            "value3".to_string(),
+        ];
+
+        let expected = vec![
+            ("-f".to_string(), Some("value1".to_string())),
+            ("-s".to_string(), Some("value2".to_string())),
+            ("-b".to_string(), None),
+            ("-t".to_string(), Some("value3".to_string())),
+        ];
+
+        let result = parse_options(&args);
+
+        assert_eq!(result, expected);
+    }
+}
