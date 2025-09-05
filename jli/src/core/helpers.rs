@@ -73,6 +73,18 @@ pub fn show_update_command_help() {
     println!("passger update -i gmail");
 }
 
+pub fn show_show_command_help() {
+    println!(
+        "Show existing passkey by ID. The secret key won't be displayed, instead, it will be copied to your clipboard."
+    );
+    println!("Usage: passger show [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("  -i, --id             Specify the ID of the key");
+    println!("Example:");
+    println!("passger show -i gmail");
+}
+
 pub fn show_init_command_help() {
     println!(
         "Initialize a new vault. If a vault already existing, you will be asked to override it."

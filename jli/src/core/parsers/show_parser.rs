@@ -1,13 +1,11 @@
 use crate::core as JLI;
 
-pub enum UpdateCommand {
+pub enum ShowCommand {
     Help,
-    Update { id: String },
+    Show { id: String },
 }
 
-pub fn parse_update_command(
-    options: Vec<(String, Option<String>)>,
-) -> Result<UpdateCommand, String> {
+pub fn parse_show_command(options: Vec<(String, Option<String>)>) -> Result<ShowCommand, String> {
     let possible_flags = vec!["--help", "-h", "-i", "--id"];
 
     let is_valid = JLI::validate_options(possible_flags, options.clone());
@@ -18,11 +16,11 @@ pub fn parse_update_command(
     }
 }
 
-fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<UpdateCommand, String> {
+fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<ShowCommand, String> {
     let is_help = JLI::is_help_command(&options);
 
     if is_help {
-        return Ok(UpdateCommand::Help);
+        return Ok(ShowCommand::Help);
     }
 
     let id = options
@@ -34,5 +32,5 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<Updat
         return Err("Error: ID is required".to_string());
     }
 
-    Ok(UpdateCommand::Update { id: id.unwrap() })
+    Ok(ShowCommand::Show { id: id.unwrap() })
 }

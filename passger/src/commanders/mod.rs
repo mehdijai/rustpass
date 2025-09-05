@@ -4,3 +4,4 @@ jli::dis_import!(list);
 jli::dis_import!(create);
 jli::dis_import!(update_master);
 jli::dis_import!(update);
+jli::dis_import!(show);
