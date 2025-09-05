@@ -14,6 +14,7 @@ fn main() {
         JLI::Commands::Init(command) => Commanders::init_commander(command),
         JLI::Commands::List(command) => Commanders::list_commander(command),
         JLI::Commands::Create(command) => Commanders::create_commander(command),
+        JLI::Commands::UpdateMaster(command) => Commanders::update_master_commander(command),
         _ => JLI::show_help(),
     }
 

@@ -92,6 +92,15 @@ pub fn show_create_command_help() {
     println!("passger create");
 }
 
+pub fn show_update_master_command_help() {
+    println!("Update the master password. This will require the old master password.");
+    println!("Usage: passger update-master [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("Example:");
+    println!("passger update-master");
+}
+
 pub fn show_command_title(command: &str) {
     println!("");
     println!("==============| {command} |==============");
