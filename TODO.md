@@ -1,7 +1,16 @@
 # TODOs
 
 - [ ] JLI
-  - [ ] Args Parser
+  - [x] Args Parser
+  - [ ] Options Parser
+    - [x] Add
+    - [x] Init
+    - [ ] List
+    - [ ] Show
+    - [ ] Create
+    - [ ] Update
+    - [ ] Update Master Password
+    - [ ] Delete
   - [ ] Command Dispatcher
 - [ ] DB
   - [ ] DB Manager

@@ -22,3 +22,9 @@ pub fn handle_command_err<T>(command: Result<T, String>) -> T {
         Ok(command) => command,
     }
 }
+
+pub fn is_help_command(options: &Vec<(String, Option<String>)>) -> bool {
+    options
+        .iter()
+        .any(|(flag, _)| flag == "--help" || flag == "-h")
+}

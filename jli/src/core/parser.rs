@@ -1,10 +1,10 @@
-use crate::core::{AddCommand, parse_add_command};
+use crate::core::{AddCommand, InitCommand, parse_add_command, parse_init_command};
 use std::env;
 
 pub enum Commands {
     Help,
     Version,
-    Init(Result<AddCommand, String>),
+    Init(Result<InitCommand, String>),
     Create(Result<AddCommand, String>),
     Add(Result<AddCommand, String>),
     List(Result<AddCommand, String>),
@@ -20,7 +20,7 @@ pub fn parse_commands() -> Commands {
         ArgCommands::Help => Commands::Help,
         ArgCommands::Version => Commands::Help,
         ArgCommands::NoCommand => Commands::Help,
-        ArgCommands::Init(args) => Commands::Init(match_command(args, parse_add_command)),
+        ArgCommands::Init(args) => Commands::Init(match_command(args, parse_init_command)),
         ArgCommands::Create(args) => Commands::Create(match_command(args, parse_add_command)),
         ArgCommands::Add(args) => Commands::Add(match_command(args, parse_add_command)),
         ArgCommands::List(args) => Commands::List(match_command(args, parse_add_command)),

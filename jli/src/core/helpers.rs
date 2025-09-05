@@ -53,6 +53,7 @@ pub fn show_version() {
 }
 
 pub fn show_add_command_help() {
+    println!("Add a new passkey to the vault quickly.");
     println!("Usage: passger add [options]");
     println!("Options:");
     println!("  --help, -h     Show this help message and exit");
@@ -60,6 +61,17 @@ pub fn show_add_command_help() {
     println!("  -e             Specify the email or username of the new key");
     println!("Example:");
     println!("passger add -n \"Gmail\" -e \"mygmail@gmail.com\"");
+}
+
+pub fn show_init_command_help() {
+    println!(
+        "Initialize a new vault. If a vault already existing, you will be asked to override it."
+    );
+    println!("Usage: passger init [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("Example:");
+    println!("passger init");
 }
 
 pub fn show_command_title(command: &str) {

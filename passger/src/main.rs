@@ -1,4 +1,5 @@
 mod commanders;
+
 use commanders as Commanders;
 use jli::core as JLI;
 
@@ -9,7 +10,8 @@ fn main() {
     match command {
         JLI::Commands::Help => JLI::show_help(),
         JLI::Commands::Version => JLI::show_version(),
-        JLI::Commands::Add(add_command) => Commanders::add_commander(add_command),
+        JLI::Commands::Add(command) => Commanders::add_commander(command),
+        JLI::Commands::Init(command) => Commanders::init_commander(command),
         _ => JLI::show_help(),
     }
 
