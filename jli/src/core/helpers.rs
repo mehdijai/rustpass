@@ -51,3 +51,25 @@ pub fn show_version() {
     println!("Version: 1.0.0");
     println!("");
 }
+
+pub fn show_add_command_help() {
+    println!("Usage: passger add [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("  -n             Specify the name of the new key");
+    println!("  -e             Specify the email or username of the new key");
+    println!("Example:");
+    println!("passger add -n \"Gmail\" -e \"mygmail@gmail.com\"");
+}
+
+pub fn show_command_title(command: &str) {
+    println!("");
+    println!("==============| {command} |==============");
+    println!("");
+}
+
+pub fn show_footer() {
+    println!("");
+    println!("=====================| See ya |=====================");
+    println!("");
+}
