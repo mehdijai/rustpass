@@ -9,10 +9,10 @@
     - [x] Create
     - [x] Update Master Password
     - [x] Update
-    - [ ] Show
-    - [ ] Delete
+    - [x] Show
+    - [x] Delete
     - [ ] Update details
-  - [ ] Command Dispatcher
+  - [x] Command Dispatcher
 - [ ] DB
   - [ ] DB Manager
 - [ ] Core

@@ -17,7 +17,7 @@ fn main() {
         JLI::Commands::UpdateMaster(command) => Commanders::update_master_commander(command),
         JLI::Commands::Update(command) => Commanders::update_commander(command),
         JLI::Commands::Show(command) => Commanders::show_commander(command),
-        _ => JLI::show_help(),
+        JLI::Commands::Delete(command) => Commanders::delete_commander(command),
     }
 
     JLI::show_footer();

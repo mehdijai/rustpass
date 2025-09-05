@@ -85,6 +85,16 @@ pub fn show_show_command_help() {
     println!("passger show -i gmail");
 }
 
+pub fn show_delete_command_help() {
+    println!("Delete existing passkey by ID. WARNING: Irreversible action!");
+    println!("Usage: passger delete [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("  -i, --id             Specify the ID of the key");
+    println!("Example:");
+    println!("passger delete -i gmail");
+}
+
 pub fn show_init_command_help() {
     println!(
         "Initialize a new vault. If a vault already existing, you will be asked to override it."
