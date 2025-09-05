@@ -73,6 +73,18 @@ pub fn show_update_command_help() {
     println!("passger update -i gmail");
 }
 
+pub fn show_update_details_command_help() {
+    println!("Update existing passkey details; name and/or email.");
+    println!("Usage: passger update-details [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("  -i, --id             Specify the ID of the key");
+    println!("  -e             Specify the new email of the key");
+    println!("  -n             Specify the new name of the key");
+    println!("Example:");
+    println!("passger update-details -i gmail");
+}
+
 pub fn show_show_command_help() {
     println!(
         "Show existing passkey by ID. The secret key won't be displayed, instead, it will be copied to your clipboard."

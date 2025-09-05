@@ -1,8 +1,8 @@
 # TODOs
 
-- [ ] JLI
+- [x] JLI
   - [x] Args Parser
-  - [ ] Options Parser
+  - [x] Options Parser
     - [x] Add
     - [x] Init
     - [x] List
@@ -11,7 +11,7 @@
     - [x] Update
     - [x] Show
     - [x] Delete
-    - [ ] Update details
+    - [x] Update details
   - [x] Command Dispatcher
 - [ ] DB
   - [ ] DB Manager

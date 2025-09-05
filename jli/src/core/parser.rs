@@ -10,6 +10,7 @@ pub enum Commands {
     Create(Result<JLI::CreateCommand, String>),
     UpdateMaster(Result<JLI::UpdateMasterCommand, String>),
     Update(Result<JLI::UpdateCommand, String>),
+    UpdateDetails(Result<JLI::UpdateDetailsCommand, String>),
     Show(Result<JLI::ShowCommand, String>),
     Delete(Result<JLI::DeleteCommand, String>),
 }
@@ -33,6 +34,9 @@ pub fn parse_commands() -> Commands {
         ArgCommands::Update(args) => {
             Commands::Update(match_command(args, JLI::parse_update_command))
         }
+        ArgCommands::UpdateDetails(args) => {
+            Commands::UpdateDetails(match_command(args, JLI::parse_update_details_command))
+        }
         ArgCommands::UpdateMaster(args) => {
             Commands::UpdateMaster(match_command(args, JLI::parse_update_master_command))
         }
@@ -50,6 +54,7 @@ enum ArgCommands {
     Show(Vec<String>),
     Delete(Vec<String>),
     Update(Vec<String>),
+    UpdateDetails(Vec<String>),
     UpdateMaster(Vec<String>),
 }
 
@@ -70,6 +75,7 @@ fn parse_args() -> ArgCommands {
         "show" => ArgCommands::Show(args[1..].to_vec()),
         "delete" => ArgCommands::Delete(args[1..].to_vec()),
         "update" => ArgCommands::Update(args[1..].to_vec()),
+        "update-details" => ArgCommands::UpdateDetails(args[1..].to_vec()),
         "update-master" => ArgCommands::UpdateMaster(args[1..].to_vec()),
         _ => ArgCommands::Help,
     }

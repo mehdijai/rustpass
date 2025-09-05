@@ -6,3 +6,4 @@ jli::dis_import!(update_master);
 jli::dis_import!(update);
 jli::dis_import!(show);
 jli::dis_import!(delete);
+jli::dis_import!(update_details);

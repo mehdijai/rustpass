@@ -6,3 +6,4 @@ dis_import!(update_master_parser);
 dis_import!(update_parser);
 dis_import!(show_parser);
 dis_import!(delete_parser);
+dis_import!(update_details_parser);
