@@ -63,6 +63,16 @@ pub fn show_add_command_help() {
     println!("passger add -n \"Gmail\" -e \"mygmail@gmail.com\"");
 }
 
+pub fn show_update_command_help() {
+    println!("Update existing passkey.");
+    println!("Usage: passger update [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("  -i, --id             Specify the ID of the key");
+    println!("Example:");
+    println!("passger update -i gmail");
+}
+
 pub fn show_init_command_help() {
     println!(
         "Initialize a new vault. If a vault already existing, you will be asked to override it."

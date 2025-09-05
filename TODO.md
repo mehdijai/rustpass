@@ -7,10 +7,11 @@
     - [x] Init
     - [x] List
     - [x] Create
-    - [ ] Update Master Password
+    - [x] Update Master Password
+    - [x] Update
     - [ ] Show
-    - [ ] Update
     - [ ] Delete
+    - [ ] Update details
   - [ ] Command Dispatcher
 - [ ] DB
   - [ ] DB Manager

@@ -3,3 +3,4 @@ dis_import!(init_parser);
 dis_import!(list_parser);
 dis_import!(create_parser);
 dis_import!(update_master_parser);
+dis_import!(update_parser);
