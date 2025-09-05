@@ -13,6 +13,7 @@ fn main() {
         JLI::Commands::Add(command) => Commanders::add_commander(command),
         JLI::Commands::Init(command) => Commanders::init_commander(command),
         JLI::Commands::List(command) => Commanders::list_commander(command),
+        JLI::Commands::Create(command) => Commanders::create_commander(command),
         _ => JLI::show_help(),
     }
 

@@ -73,6 +73,7 @@ pub fn show_init_command_help() {
     println!("Example:");
     println!("passger init");
 }
+
 pub fn show_list_command_help() {
     println!("Listing your vault as a table. Showing only public information.");
     println!("Usage: passger list [options]");
@@ -80,6 +81,15 @@ pub fn show_list_command_help() {
     println!("  --help, -h     Show this help message and exit");
     println!("Example:");
     println!("passger list");
+}
+
+pub fn show_create_command_help() {
+    println!("Create new passkey step by step. Just like the \"add\" command.");
+    println!("Usage: passger create [options]");
+    println!("Options:");
+    println!("  --help, -h     Show this help message and exit");
+    println!("Example:");
+    println!("passger create");
 }
 
 pub fn show_command_title(command: &str) {

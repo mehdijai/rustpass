@@ -7,11 +7,11 @@ pub enum Commands {
     Add(Result<JLI::AddCommand, String>),
     Init(Result<JLI::InitCommand, String>),
     List(Result<JLI::ListCommand, String>),
+    Create(Result<JLI::CreateCommand, String>),
+    UpdateMaster(Result<JLI::AddCommand, String>),
     Show(Result<JLI::AddCommand, String>),
-    Create(Result<JLI::AddCommand, String>),
     Delete(Result<JLI::AddCommand, String>),
     Update(Result<JLI::AddCommand, String>),
-    UpdateMaster(Result<JLI::AddCommand, String>),
 }
 
 pub fn parse_commands() -> Commands {
@@ -21,7 +21,9 @@ pub fn parse_commands() -> Commands {
         ArgCommands::Version => Commands::Help,
         ArgCommands::NoCommand => Commands::Help,
         ArgCommands::Init(args) => Commands::Init(match_command(args, JLI::parse_init_command)),
-        ArgCommands::Create(args) => Commands::Create(match_command(args, JLI::parse_add_command)),
+        ArgCommands::Create(args) => {
+            Commands::Create(match_command(args, JLI::parse_create_command))
+        }
         ArgCommands::Add(args) => Commands::Add(match_command(args, JLI::parse_add_command)),
         ArgCommands::List(args) => Commands::List(match_command(args, JLI::parse_list_command)),
         ArgCommands::Show(args) => Commands::Show(match_command(args, JLI::parse_add_command)),

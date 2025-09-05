@@ -5,11 +5,11 @@
   - [ ] Options Parser
     - [x] Add
     - [x] Init
-    - [ ] List
-    - [ ] Show
-    - [ ] Create
-    - [ ] Update
+    - [x] List
+    - [x] Create
     - [ ] Update Master Password
+    - [ ] Show
+    - [ ] Update
     - [ ] Delete
   - [ ] Command Dispatcher
 - [ ] DB
