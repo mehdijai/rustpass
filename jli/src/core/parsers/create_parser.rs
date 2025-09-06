@@ -11,7 +11,7 @@ pub fn parse_create_command(options: Vec<(String, Option<String>)>) -> CreateCom
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => JLI::print_error(err),
+        Err(err) => com::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }

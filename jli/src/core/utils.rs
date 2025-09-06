@@ -1,21 +1,19 @@
-use crate::core as JLI;
-
 pub fn validate_options(
     possible_flags: Vec<&str>,
     options: Vec<(String, Option<String>)>,
-) -> Result<(), JLI::Error> {
+) -> Result<(), com::Error> {
     for option in options {
         if !possible_flags.contains(&option.0.as_str()) {
-            return Err(JLI::Error::InvalidFlag(option.0));
+            return Err(com::Error::InvalidFlag(option.0));
         }
     }
 
     Ok(())
 }
 
-pub fn handle_command_err<T>(command: Result<T, JLI::Error>) -> T {
+pub fn handle_command_err<T>(command: Result<T, com::Error>) -> T {
     match command {
-        Err(err) => JLI::print_error(err),
+        Err(err) => com::print_error(err),
         Ok(command) => command,
     }
 }

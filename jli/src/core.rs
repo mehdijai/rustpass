@@ -1,5 +1,4 @@
-dis_import!(helpers);
-dis_import!(parser);
-dis_import!(parsers);
-dis_import!(utils);
-dis_import!(errors);
+com::dis_import!(helpers);
+com::dis_import!(parser);
+com::dis_import!(parsers);
+com::dis_import!(utils);

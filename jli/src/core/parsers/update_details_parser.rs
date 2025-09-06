@@ -17,7 +17,7 @@ pub fn parse_update_details_command(
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => JLI::print_error(err),
+        Err(err) => com::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
@@ -35,7 +35,7 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> UpdateDetail
         .and_then(|(_, value)| value.clone());
 
     if id.is_none() {
-        JLI::print_error(JLI::Error::InvalidInput("ID is required".to_string()));
+        com::print_error(com::Error::InvalidInput("ID is required".to_string()));
     }
 
     let name = options
@@ -49,7 +49,7 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> UpdateDetail
         .and_then(|(_, value)| value.clone());
 
     if name.is_none() && email.is_none() {
-        JLI::print_error(JLI::Error::InvalidInput(
+        com::print_error(com::Error::InvalidInput(
             "Error: At least one of the following flags are required: -n, -e".to_string(),
         ));
     }

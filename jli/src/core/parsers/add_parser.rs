@@ -1,4 +1,4 @@
-use crate::core::{self as JLI, print_error};
+use crate::core::{self as JLI};
 
 pub enum AddCommand {
     Help,
@@ -11,7 +11,7 @@ pub fn parse_add_command(options: Vec<(String, Option<String>)>) -> AddCommand {
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => JLI::print_error(err),
+        Err(err) => com::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
@@ -29,7 +29,7 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> AddCommand {
         .and_then(|(_, value)| value.clone());
 
     if email.is_none() {
-        print_error(JLI::Error::InvalidInput("Email is required".to_string()));
+        com::print_error(com::Error::InvalidInput("Email is required".to_string()));
     }
 
     let name = options
@@ -38,7 +38,7 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> AddCommand {
         .and_then(|(_, value)| value.clone());
 
     if name.is_none() {
-        print_error(JLI::Error::InvalidInput("Name is required".to_string()));
+        com::print_error(com::Error::InvalidInput("Name is required".to_string()));
     }
 
     AddCommand::Add {

@@ -6,3 +6,4 @@ edition = "2024"
 [dependencies]
 jli = { path = "../jli" }
 db_manager = { path = "../db_manager" }
+com = { path = "../com" }

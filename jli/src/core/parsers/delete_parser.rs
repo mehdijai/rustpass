@@ -11,7 +11,7 @@ pub fn parse_delete_command(options: Vec<(String, Option<String>)>) -> DeleteCom
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => JLI::print_error(err),
+        Err(err) => com::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
@@ -29,7 +29,7 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> DeleteComman
         .and_then(|(_, value)| value.clone());
 
     if id.is_none() {
-        JLI::print_error(JLI::Error::InvalidInput(
+        com::print_error(com::Error::InvalidInput(
             "Error: ID is required".to_string(),
         ));
     }

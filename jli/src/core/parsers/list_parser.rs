@@ -11,7 +11,7 @@ pub fn parse_list_command(options: Vec<(String, Option<String>)>) -> ListCommand
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => JLI::print_error(err),
+        Err(err) => com::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
