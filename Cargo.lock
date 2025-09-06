@@ -3,6 +3,10 @@
 version = 4
 
 [[package]]
+name = "db_manager"
+version = "0.1.0"
+
+[[package]]
 name = "jli"
 version = "0.1.0"
 
@@ -10,5 +14,6 @@ version = "0.1.0"
 name = "passger"
 version = "0.1.0"
 dependencies = [
+ "db_manager",
  "jli",
 ]

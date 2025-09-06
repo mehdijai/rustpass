@@ -1,9 +1,7 @@
 use jli::core as JLI;
 
-pub fn add_commander(command_args: Result<JLI::AddCommand, String>) {
+pub fn add_commander(command: JLI::AddCommand) {
     JLI::show_command_title("Register new passkey");
-
-    let command = JLI::handle_command_err(command_args);
 
     match command {
         JLI::AddCommand::Help => JLI::show_add_command_help(),

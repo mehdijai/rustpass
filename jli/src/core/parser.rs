@@ -4,15 +4,15 @@ use std::env;
 pub enum Commands {
     Help,
     Version,
-    Add(Result<JLI::AddCommand, String>),
-    Init(Result<JLI::InitCommand, String>),
-    List(Result<JLI::ListCommand, String>),
-    Create(Result<JLI::CreateCommand, String>),
-    UpdateMaster(Result<JLI::UpdateMasterCommand, String>),
-    Update(Result<JLI::UpdateCommand, String>),
-    UpdateDetails(Result<JLI::UpdateDetailsCommand, String>),
-    Show(Result<JLI::ShowCommand, String>),
-    Delete(Result<JLI::DeleteCommand, String>),
+    Add(JLI::AddCommand),
+    Init(JLI::InitCommand),
+    List(JLI::ListCommand),
+    Create(JLI::CreateCommand),
+    UpdateMaster(JLI::UpdateMasterCommand),
+    Update(JLI::UpdateCommand),
+    UpdateDetails(JLI::UpdateDetailsCommand),
+    Show(JLI::ShowCommand),
+    Delete(JLI::DeleteCommand),
 }
 
 pub fn parse_commands() -> Commands {

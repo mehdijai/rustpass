@@ -1,26 +1,26 @@
-use crate::core as JLI;
+use crate::core::{self as JLI, print_error};
 
 pub enum AddCommand {
     Help,
     Add { name: String, email: String },
 }
 
-pub fn parse_add_command(options: Vec<(String, Option<String>)>) -> Result<AddCommand, String> {
+pub fn parse_add_command(options: Vec<(String, Option<String>)>) -> AddCommand {
     let possible_flags = vec!["--help", "-h", "-n", "-e"];
 
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => Err(err),
+        Err(err) => JLI::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
 
-fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<AddCommand, String> {
+fn build_command_options(options: Vec<(String, Option<String>)>) -> AddCommand {
     let is_help = JLI::is_help_command(&options);
 
     if is_help {
-        return Ok(AddCommand::Help);
+        return AddCommand::Help;
     }
 
     let email = options
@@ -29,7 +29,7 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<AddCo
         .and_then(|(_, value)| value.clone());
 
     if email.is_none() {
-        return Err("Error: Email is required".to_string());
+        print_error(JLI::Error::InvalidInput("Email is required".to_string()));
     }
 
     let name = options
@@ -38,11 +38,11 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<AddCo
         .and_then(|(_, value)| value.clone());
 
     if name.is_none() {
-        return Err("Error: Name is required".to_string());
+        print_error(JLI::Error::InvalidInput("Name is required".to_string()));
     }
 
-    Ok(AddCommand::Add {
+    AddCommand::Add {
         name: name.unwrap(),
         email: email.unwrap(),
-    })
+    }
 }

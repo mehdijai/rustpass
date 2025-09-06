@@ -5,25 +5,23 @@ pub enum CreateCommand {
     Create,
 }
 
-pub fn parse_create_command(
-    options: Vec<(String, Option<String>)>,
-) -> Result<CreateCommand, String> {
+pub fn parse_create_command(options: Vec<(String, Option<String>)>) -> CreateCommand {
     let possible_flags = vec!["--help", "-h"];
 
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => Err(err),
+        Err(err) => JLI::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
 
-fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<CreateCommand, String> {
+fn build_command_options(options: Vec<(String, Option<String>)>) -> CreateCommand {
     let is_help = JLI::is_help_command(&options);
 
     if is_help {
-        return Ok(CreateCommand::Help);
+        return CreateCommand::Help;
     }
 
-    Ok(CreateCommand::Create)
+    CreateCommand::Create
 }

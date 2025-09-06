@@ -5,22 +5,22 @@ pub enum ShowCommand {
     Show { id: String },
 }
 
-pub fn parse_show_command(options: Vec<(String, Option<String>)>) -> Result<ShowCommand, String> {
+pub fn parse_show_command(options: Vec<(String, Option<String>)>) -> ShowCommand {
     let possible_flags = vec!["--help", "-h", "-i", "--id"];
 
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => Err(err),
+        Err(err) => JLI::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
 
-fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<ShowCommand, String> {
+fn build_command_options(options: Vec<(String, Option<String>)>) -> ShowCommand {
     let is_help = JLI::is_help_command(&options);
 
     if is_help {
-        return Ok(ShowCommand::Help);
+        return ShowCommand::Help;
     }
 
     let id = options
@@ -29,8 +29,8 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<ShowC
         .and_then(|(_, value)| value.clone());
 
     if id.is_none() {
-        return Err("Error: ID is required".to_string());
+        JLI::print_error(JLI::Error::InvalidInput("ID is required".to_string()));
     }
 
-    Ok(ShowCommand::Show { id: id.unwrap() })
+    ShowCommand::Show { id: id.unwrap() }
 }

@@ -1,24 +1,21 @@
-use std::process;
+use crate::core as JLI;
 
 pub fn validate_options(
     possible_flags: Vec<&str>,
     options: Vec<(String, Option<String>)>,
-) -> Result<(), String> {
+) -> Result<(), JLI::Error> {
     for option in options {
         if !possible_flags.contains(&option.0.as_str()) {
-            return Err(format!("Invalid flag: {}", option.0));
+            return Err(JLI::Error::InvalidFlag(option.0));
         }
     }
 
     Ok(())
 }
 
-pub fn handle_command_err<T>(command: Result<T, String>) -> T {
+pub fn handle_command_err<T>(command: Result<T, JLI::Error>) -> T {
     match command {
-        Err(err) => {
-            eprintln!("Error: {}", err);
-            process::exit(0);
-        }
+        Err(err) => JLI::print_error(err),
         Ok(command) => command,
     }
 }

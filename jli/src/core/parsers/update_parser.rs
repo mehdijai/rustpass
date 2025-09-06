@@ -5,24 +5,22 @@ pub enum UpdateCommand {
     Update { id: String },
 }
 
-pub fn parse_update_command(
-    options: Vec<(String, Option<String>)>,
-) -> Result<UpdateCommand, String> {
+pub fn parse_update_command(options: Vec<(String, Option<String>)>) -> UpdateCommand {
     let possible_flags = vec!["--help", "-h", "-i", "--id"];
 
     let is_valid = JLI::validate_options(possible_flags, options.clone());
 
     match is_valid {
-        Err(err) => Err(err),
+        Err(err) => JLI::print_error(err),
         Ok(()) => build_command_options(options),
     }
 }
 
-fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<UpdateCommand, String> {
+fn build_command_options(options: Vec<(String, Option<String>)>) -> UpdateCommand {
     let is_help = JLI::is_help_command(&options);
 
     if is_help {
-        return Ok(UpdateCommand::Help);
+        return UpdateCommand::Help;
     }
 
     let id = options
@@ -31,8 +29,8 @@ fn build_command_options(options: Vec<(String, Option<String>)>) -> Result<Updat
         .and_then(|(_, value)| value.clone());
 
     if id.is_none() {
-        return Err("Error: ID is required".to_string());
+        JLI::print_error(JLI::Error::InvalidInput("ID is required".to_string()));
     }
 
-    Ok(UpdateCommand::Update { id: id.unwrap() })
+    UpdateCommand::Update { id: id.unwrap() }
 }
