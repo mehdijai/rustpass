@@ -12,6 +12,7 @@
     - [x] Show
     - [x] Delete
     - [x] Update details
+  - [ ] implement `JLI::read_secret()`
   - [x] Command Dispatcher
 - [x] DB
   - [x] DB Manager
@@ -20,7 +21,7 @@
   - [x] Init
   - [x] List
   - [x] Add
-  - [ ] Show
+  - [x] Show
   - [ ] Create
   - [ ] Update
   - [ ] Update Master Password
