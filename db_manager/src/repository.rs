@@ -128,15 +128,17 @@ impl<T: HasId + Clone + Serializable, S: Storage> ORM<T, S> {
         true
     }
 
-    pub fn delete(&mut self, ulid: &str) -> bool {
-        let exists = self.records.contains_key(ulid);
-        if !exists {
-            return false;
-        }
+    pub fn delete(&mut self, id: &str) -> bool {
+        let found_key = self.find_by_id(id);
 
-        self.changed = true;
-        self.records.remove(ulid);
-        true
+        match found_key {
+            Some(passkey) => {
+                self.changed = true;
+                self.records.remove(passkey.ulid());
+                true
+            }
+            None => false,
+        }
     }
 }
 

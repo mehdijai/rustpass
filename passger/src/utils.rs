@@ -7,6 +7,7 @@ pub fn create_id(orm: &db_manager::ORM<PassKey, db_manager::DB>, name: &str) -> 
 
     let normalized_name = JLI::normalize_string(&name);
 
+    // TODO: Use Regex
     let id_duplicates = passkeys
         .iter()
         .filter(|passkey| {
