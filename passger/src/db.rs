@@ -80,6 +80,7 @@ impl DBManager::HasId for PassKey {
     }
 }
 
+// TODO: Move to main struct
 #[derive(Debug, Clone, Tabled)]
 pub struct PassKeyDisplay {
     #[tabled(rename = "ID")]

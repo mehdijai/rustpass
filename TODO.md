@@ -13,12 +13,12 @@
     - [x] Delete
     - [x] Update details
   - [x] Command Dispatcher
-- [ ] DB
-  - [ ] DB Manager
+- [x] DB
+  - [x] DB Manager
 - [ ] Encryption Service
 - [ ] Core
   - [ ] Init
-  - [ ] List
+  - [x] List
   - [ ] Show
   - [ ] Create
   - [ ] Update
