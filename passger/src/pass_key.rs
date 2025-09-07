@@ -2,7 +2,6 @@ use core::fmt;
 use std::borrow::Cow;
 
 use db_manager as Repository;
-use jli::core as JLI;
 use tabled::{Table, Tabled};
 use ulid::Ulid;
 
@@ -16,9 +15,9 @@ pub struct PassKey {
 }
 
 impl PassKey {
-    pub fn create(name: &str, username: &str, password: &str) -> Self {
+    pub fn create(name: &str, username: &str, password: &str, id: String) -> Self {
         Self {
-            id: JLI::normalize_string(&name),
+            id,
             ulid: Ulid::new().to_string(),
             name: name.to_string(),
             username: username.to_string(),

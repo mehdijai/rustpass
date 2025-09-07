@@ -1,6 +1,5 @@
+use crate::{pass_key::PassKey, utils::create_id};
 use jli::core as JLI;
-
-use crate::pass_key::PassKey;
 
 pub fn add_commander(command: JLI::AddCommand) {
     JLI::show_command_title("Register new passkey");
@@ -18,8 +17,11 @@ pub fn add_commander(command: JLI::AddCommand) {
                 Err(err) => com::print_error(com::Error::InvalidData(err.to_string())),
             };
             let password = input.trim();
-            let new_passkey = PassKey::create(&name, &email, password);
             let mut orm = db_manager::create_orm::<PassKey>();
+
+            let id = create_id(&orm, &name);
+
+            let new_passkey = PassKey::create(&name, &email, password, id);
             orm.insert(&new_passkey);
             println!("Passkey registered successfully!");
             println!("{}", new_passkey);

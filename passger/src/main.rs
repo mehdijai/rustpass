@@ -1,5 +1,6 @@
 mod commanders;
 mod pass_key;
+mod utils;
 
 use commanders as Commanders;
 use jli::core as JLI;
