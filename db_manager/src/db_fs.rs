@@ -11,8 +11,6 @@ pub fn get_db_path() -> PathBuf {
         com::print_error(com::Error::NotInitialized)
     }
 
-    create_db_file(&path);
-
     path
 }
 
@@ -33,12 +31,6 @@ pub fn initialize_db(overwrite: Option<bool>) -> Result<(), com::Error> {
         Err(error) => Err(com::match_io_error_kind(&path, error)),
         Ok(_) => Ok(()),
     }
-}
-
-fn create_db_file(path: &PathBuf) {
-    let file = File::create(path);
-
-    handle_io_errors(path, file);
 }
 
 fn create_dir(path: &PathBuf) {

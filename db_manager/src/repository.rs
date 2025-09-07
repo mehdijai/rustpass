@@ -111,9 +111,10 @@ impl<T: HasId + Clone + Serializable, S: Storage> ORM<T, S> {
         self.records.values().cloned().collect()
     }
 
-    pub fn insert(&mut self, payload: T) {
+    pub fn insert(&mut self, payload: &T) {
         self.changed = true;
-        self.records.insert(payload.ulid().to_string(), payload);
+        self.records
+            .insert(payload.ulid().to_string(), payload.to_owned());
     }
 
     pub fn update(&mut self, payload: T) -> bool {
@@ -312,7 +313,7 @@ mod tests {
             name: "John".to_string(),
         };
 
-        orm.insert(record.clone());
+        orm.insert(&record);
 
         assert_eq!(orm.list().len(), 1);
         assert_eq!(orm.find_by_id("user1"), Some(record));
@@ -417,7 +418,7 @@ mod tests {
                 name: "John".to_string(),
             };
 
-            orm.insert(record);
+            orm.insert(&record);
         }
     }
 

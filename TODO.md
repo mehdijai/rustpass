@@ -19,11 +19,11 @@
 - [ ] Core
   - [x] Init
   - [x] List
+  - [x] Add
   - [ ] Show
   - [ ] Create
   - [ ] Update
   - [ ] Update Master Password
   - [ ] Delete
-  - [ ] Add
   - [ ] Encrypt File
   - [ ] Encrypt Data

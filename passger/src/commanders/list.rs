@@ -1,4 +1,3 @@
-use db_manager::create_orm;
 use jli::core as JLI;
 
 use crate::pass_key::{PassKey, print_passkeys_table};
@@ -9,7 +8,7 @@ pub fn list_commander(command: JLI::ListCommand) {
     match command {
         JLI::ListCommand::Help => JLI::show_list_command_help(),
         JLI::ListCommand::List => {
-            let orm = create_orm::<PassKey>();
+            let orm = db_manager::create_orm::<PassKey>();
             let records_list = &orm.list();
 
             print_passkeys_table(&records_list);
