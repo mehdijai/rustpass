@@ -21,7 +21,6 @@ pub fn show_help() {
         ("update", "Update an existing password entry"),
         ("update-master", "Update the master password"),
     ];
-    // Password Manager CLI
 
     println!("");
     println!("USAGE:");

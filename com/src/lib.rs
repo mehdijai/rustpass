@@ -66,14 +66,11 @@ pub fn match_io_error_kind(path: &PathBuf, error: std::io::Error) -> Error {
         ErrorKind::ReadOnlyFilesystem => Error::ReadOnlyFilesystem(path.display().to_string()),
         ErrorKind::StorageFull => Error::StorageFull,
         ErrorKind::Interrupted => Error::Interrupted,
-        _ => {
-            // Fallback for any other error kinds
-            Error::FSUnknown(format!(
-                "Failed to create directory '{}': {} (OS error: {:?})",
-                path.display(),
-                error,
-                error.raw_os_error()
-            ))
-        }
+        _ => Error::FSUnknown(format!(
+            "Failed to create directory '{}': {} (OS error: {:?})",
+            path.display(),
+            error,
+            error.raw_os_error()
+        )),
     }
 }

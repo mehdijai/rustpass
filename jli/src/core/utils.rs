@@ -24,6 +24,18 @@ pub fn is_help_command(options: &Vec<(String, Option<String>)>) -> bool {
         .any(|(flag, _)| flag == "--help" || flag == "-h")
 }
 
+pub fn normalize_string(input: &str) -> String {
+    input
+        .to_lowercase()
+        .chars()
+        .map(|c| if c.is_alphabetic() { c } else { '-' })
+        .collect::<String>()
+        .split('-')
+        .filter(|s| !s.is_empty())
+        .collect::<Vec<&str>>()
+        .join("-")
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -75,5 +87,13 @@ mod tests {
         ];
 
         assert!(!is_help_command(&options));
+    }
+
+    #[test]
+    fn test_normalize_string() {
+        let input = "Bank of America (#1)";
+        let normalized = normalize_string(input);
+
+        assert_eq!(normalized, "bank-of-america")
     }
 }
