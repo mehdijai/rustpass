@@ -5,18 +5,37 @@ pub fn get_db_path() -> PathBuf {
     create_dir(&dir);
 
     let path = dir.join("db.pgr");
+    let file_exists = path.exists();
+
+    if !file_exists {
+        com::print_error(com::Error::NotInitialized)
+    }
+
     create_db_file(&path);
 
     path
 }
 
-fn create_db_file(path: &PathBuf) {
+pub fn initialize_db(overwrite: Option<bool>) -> Result<(), com::Error> {
+    let dir = get_dir();
+    create_dir(&dir);
+
+    let path = dir.join("db.pgr");
     let file_exists = path.exists();
 
-    if file_exists {
-        return;
+    if file_exists && overwrite.is_none() {
+        return Err(com::Error::AlreadyInitialized);
     }
 
+    let file = File::create(&path);
+
+    match file {
+        Err(error) => Err(com::match_io_error_kind(&path, error)),
+        Ok(_) => Ok(()),
+    }
+}
+
+fn create_db_file(path: &PathBuf) {
     let file = File::create(path);
 
     handle_io_errors(path, file);

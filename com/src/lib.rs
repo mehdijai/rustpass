@@ -13,6 +13,7 @@ pub enum Error {
     InvalidFlag(String),
     InvalidInput(String),
     InvalidPath(String),
+    InvalidData(String),
     FileNotFound(String),
     FileAlreadyExists(String),
     DirectoryNotFound(String),
@@ -27,28 +28,41 @@ pub enum Error {
     DBLocked,
     FSUnknown(String),
     CorruptedData,
+    NotInitialized,
+    AlreadyInitialized,
 }
 
-pub fn print_error(error: Error) -> ! {
+pub fn parse_error(error: Error) -> String {
     match error {
-        Error::InvalidFlag(message) => eprintln!("Invalid flag: {message}"),
-        Error::InvalidInput(message) => eprintln!("Invalid input: {message}"),
-        Error::InvalidPath(message) => eprintln!("Invalid path: {message}"),
-        Error::FileNotFound(message) => eprintln!("Not found: {message}"),
-        Error::FileAlreadyExists(message) => eprintln!("Already exists: {message}"),
-        Error::DirectoryNotFound(message) => eprintln!("Not found: {message}"),
-        Error::DirectoryAlreadyExists(message) => eprintln!("Already exists: {message}"),
-        Error::NotADirectory(message) => eprintln!("Not a directory: {message}"),
-        Error::NotAFile(message) => eprintln!("Not a file: {message}"),
-        Error::NotEmpty(message) => eprintln!("Not empty: {message}"),
-        Error::PermissionDenied(message) => eprintln!("Permission denied: {message}"),
-        Error::ReadOnlyFilesystem(message) => eprintln!("Read-only filesystem: {message}"),
-        Error::StorageFull => eprintln!("Storage full"),
-        Error::Interrupted => eprintln!("Interrupted"),
-        Error::DBLocked => eprintln!("Database locked"),
-        Error::FSUnknown(message) => eprintln!("Unknown error: {message}"),
-        Error::CorruptedData => eprintln!("Invalid data from DB"),
+        Error::InvalidFlag(message) => format!("Invalid flag: {message}"),
+        Error::InvalidInput(message) => format!("Invalid input: {message}"),
+        Error::InvalidData(message) => format!("Invalid data: {message}"),
+        Error::InvalidPath(message) => format!("Invalid path: {message}"),
+        Error::FileNotFound(message) => format!("Not found: {message}"),
+        Error::FileAlreadyExists(message) => format!("Already exists: {message}"),
+        Error::DirectoryNotFound(message) => format!("Not found: {message}"),
+        Error::DirectoryAlreadyExists(message) => format!("Already exists: {message}"),
+        Error::NotADirectory(message) => format!("Not a directory: {message}"),
+        Error::NotAFile(message) => format!("Not a file: {message}"),
+        Error::NotEmpty(message) => format!("Not empty: {message}"),
+        Error::PermissionDenied(message) => format!("Permission denied: {message}"),
+        Error::ReadOnlyFilesystem(message) => format!("Read-only filesystem: {message}"),
+        Error::StorageFull => format!("Storage full"),
+        Error::Interrupted => format!("Interrupted"),
+        Error::DBLocked => format!("Database locked"),
+        Error::FSUnknown(message) => format!("Unknown error: {message}"),
+        Error::CorruptedData => format!("Invalid data from DB"),
+        Error::NotInitialized => {
+            format!("The app is not yet initialized. Please run `init` command first.")
+        }
+        Error::AlreadyInitialized => {
+            format!("The app is already initialized. Re-initializing will reset your vault.")
+        }
     }
+}
+pub fn print_error(error: Error) -> ! {
+    let error_str = parse_error(error);
+    eprintln!("{}", error_str);
     process::exit(0)
 }
 

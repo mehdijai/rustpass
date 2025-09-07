@@ -17,7 +17,7 @@
   - [x] DB Manager
 - [ ] Encryption Service
 - [ ] Core
-  - [ ] Init
+  - [x] Init
   - [x] List
   - [ ] Show
   - [ ] Create
