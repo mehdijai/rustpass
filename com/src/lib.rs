@@ -26,6 +26,7 @@ pub enum Error {
     Interrupted,
     DBLocked,
     FSUnknown(String),
+    CorruptedData,
 }
 
 pub fn print_error(error: Error) -> ! {
@@ -46,6 +47,7 @@ pub fn print_error(error: Error) -> ! {
         Error::Interrupted => eprintln!("Interrupted"),
         Error::DBLocked => eprintln!("Database locked"),
         Error::FSUnknown(message) => eprintln!("Unknown error: {message}"),
+        Error::CorruptedData => eprintln!("Invalid data from DB"),
     }
     process::exit(0)
 }

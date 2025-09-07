@@ -66,7 +66,7 @@ impl DB {
         content
     }
     /// ### Overwrite data
-    pub fn write(&mut self, data: &str) {
+    pub fn write(&mut self, data: String) {
         self.handle_seek_to_start();
         let truncate_result = self.file.set_len(0);
         handle_io_errors(&self.path, truncate_result);

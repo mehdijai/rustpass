@@ -7,3 +7,5 @@ edition = "2024"
 jli = { path = "../jli" }
 db_manager = { path = "../db_manager" }
 com = { path = "../com" }
+tabled = "0.20"
+ulid = "1.2.1"

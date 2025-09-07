@@ -1,25 +1,16 @@
 mod commanders;
+mod db;
 
 use commanders as Commanders;
 use jli::core as JLI;
 
-const TEST_MODE: bool = true;
+const TEST_MODE: bool = false;
 
 fn main() {
     run();
 }
 
-fn test_mode() {
-    let mut db = db_manager::DB::new();
-    let init_content = db.get();
-    println!("init content: {}", init_content);
-    db.write("Hello world");
-    db.append("Good day");
-    let last_content = db.get();
-    db.clear();
-    println!("last content: {}", last_content);
-    db.close();
-}
+fn test_mode() {}
 
 fn run() {
     if TEST_MODE {
