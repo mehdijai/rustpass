@@ -24,3 +24,18 @@ pub fn create_id(orm: &db_manager::ORM<PassKey, db_manager::DB>, name: &str) -> 
         format!("{}-{}", normalized_name, id_duplicates + 1)
     }
 }
+
+pub fn yn_user_input() -> bool {
+    let input = read_user_input();
+    input.to_lowercase() == "y"
+}
+
+pub fn read_user_input() -> String {
+    let mut input = String::new();
+    let input_result = std::io::stdin().read_line(&mut input);
+    match input_result {
+        Ok(_) => (),
+        Err(err) => com::print_error(com::Error::InvalidData(err.to_string())),
+    };
+    input.trim().to_string()
+}

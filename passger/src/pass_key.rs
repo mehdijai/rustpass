@@ -35,6 +35,10 @@ impl PassKey {
             None => {}
         };
     }
+
+    pub fn update_password(&mut self, password: &String) {
+        self.password = password.to_string();
+    }
 }
 
 impl Repository::HasId for PassKey {

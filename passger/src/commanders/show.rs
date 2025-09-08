@@ -15,6 +15,7 @@ pub fn show_commander(command: JLI::ShowCommand) {
                 Some(passkey) => {
                     println!("A match found");
                     println!("{}", passkey);
+                    // TODO: Copy password to clipboard
                 }
                 None => {
                     println!("No passkey matching the id: \"{id}\"");

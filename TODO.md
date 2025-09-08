@@ -24,7 +24,7 @@
   - [x] Show
   - [x] Delete
   - [x] Update details
-  - [ ] Update
+  - [x] Update
   - [ ] Create
   - [ ] Update Master Password
   - [ ] Encrypt File
