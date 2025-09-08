@@ -22,9 +22,10 @@
   - [x] List
   - [x] Add
   - [x] Show
-  - [ ] Create
+  - [x] Delete
+  - [x] Update details
   - [ ] Update
+  - [ ] Create
   - [ ] Update Master Password
-  - [ ] Delete
   - [ ] Encrypt File
   - [ ] Encrypt Data

@@ -24,6 +24,17 @@ impl PassKey {
             password: password.to_string(),
         }
     }
+
+    pub fn update(&mut self, name: Option<String>, username: Option<String>) {
+        match name {
+            Some(name) => self.name = name,
+            None => {}
+        };
+        match username {
+            Some(username) => self.username = username,
+            None => {}
+        };
+    }
 }
 
 impl Repository::HasId for PassKey {

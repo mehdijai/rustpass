@@ -1,5 +1,7 @@
 use jli::core as JLI;
 
+use crate::pass_key::PassKey;
+
 pub fn update_details_commander(command: JLI::UpdateDetailsCommand) {
     JLI::show_command_title("Update passkey details (Name, and/or email)");
 
@@ -9,6 +11,25 @@ pub fn update_details_commander(command: JLI::UpdateDetailsCommand) {
             println!("Id: {}", id);
             println!("Name: {:?}", name);
             println!("Email: {:?}", email);
+            let mut orm = db_manager::create_orm::<PassKey>();
+            let found_passkey = orm.find_by_id(&id);
+
+            if found_passkey.is_none() {
+                println!("❌ Passkey not found");
+                return;
+            }
+
+            let mut passkey = found_passkey.unwrap();
+
+            passkey.update(name, email);
+
+            let updated = orm.update(passkey);
+
+            if updated {
+                println!("✅ Passkey updated");
+            } else {
+                println!("❌ Passkey not updated");
+            }
         }
     }
 }
