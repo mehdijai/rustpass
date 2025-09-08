@@ -1,6 +1,6 @@
 use jli::core as JLI;
 
-use crate::pass_key::PassKey;
+use crate::{master_password::validate_master_password, pass_key::PassKey};
 
 pub fn show_commander(command: JLI::ShowCommand) {
     JLI::show_command_title("Show a passkey");
@@ -14,8 +14,12 @@ pub fn show_commander(command: JLI::ShowCommand) {
             match found_passkey {
                 Some(passkey) => {
                     println!("A match found");
+                    if !validate_master_password() {
+                        eprintln!("Master password is not valid!");
+                        return;
+                    }
                     println!("{}", passkey);
-                    // TODO: Copy password to clipboard
+                    passkey.get_password();
                 }
                 None => {
                     println!("No passkey matching the id: \"{id}\"");

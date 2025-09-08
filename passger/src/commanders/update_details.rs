@@ -1,6 +1,6 @@
 use jli::core as JLI;
 
-use crate::pass_key::PassKey;
+use crate::{master_password::validate_master_password, pass_key::PassKey};
 
 pub fn update_details_commander(command: JLI::UpdateDetailsCommand) {
     JLI::show_command_title("Update passkey details (Name, and/or email)");
@@ -16,6 +16,11 @@ pub fn update_details_commander(command: JLI::UpdateDetailsCommand) {
 
             if found_passkey.is_none() {
                 println!("❌ Passkey not found");
+                return;
+            }
+
+            if !validate_master_password() {
+                eprintln!("Master password is not valid!");
                 return;
             }
 

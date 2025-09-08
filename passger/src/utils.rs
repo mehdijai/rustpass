@@ -39,3 +39,11 @@ pub fn read_user_input() -> String {
     };
     input.trim().to_string()
 }
+
+pub fn read_secret() -> String {
+    let password_input = rpassword::read_password();
+    match password_input {
+        Ok(pass) => pass,
+        Err(err) => com::print_error(com::Error::InvalidData(err.to_string())),
+    }
+}

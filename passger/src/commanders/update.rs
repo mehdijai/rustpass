@@ -1,8 +1,9 @@
 use jli::core as JLI;
 
 use crate::{
+    master_password::validate_master_password,
     pass_key::PassKey,
-    utils::{read_user_input, yn_user_input},
+    utils::{read_secret, yn_user_input},
 };
 
 pub fn update_commander(command: JLI::UpdateCommand) {
@@ -21,14 +22,12 @@ pub fn update_commander(command: JLI::UpdateCommand) {
                     println!("{}", passkey);
 
                     if yn_user_input() {
-                        println!("Please enter your master password");
-                        let master_password = read_user_input();
-                        if master_password != "1234" {
-                            eprintln!("Wrong master password");
+                        if !validate_master_password() {
+                            eprintln!("Master password is not valid!");
                             return;
                         }
                         println!("Please enter your new updated passkey");
-                        let new_password = read_user_input();
+                        let new_password = read_secret();
                         passkey.update_password(&new_password);
                         orm.update(passkey);
                         println!("Passkey updated successfully");

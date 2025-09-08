@@ -25,7 +25,8 @@
   - [x] Delete
   - [x] Update details
   - [x] Update
-  - [ ] Create
+  - [x] Create
   - [ ] Update Master Password
   - [ ] Encrypt File
   - [ ] Encrypt Data
+  - [ ] Generate password

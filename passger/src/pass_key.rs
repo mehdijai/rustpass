@@ -1,6 +1,7 @@
 use core::fmt;
 use std::borrow::Cow;
 
+use arboard::Clipboard;
 use db_manager as Repository;
 use tabled::{Table, Tabled};
 use ulid::Ulid;
@@ -15,9 +16,9 @@ pub struct PassKey {
 }
 
 impl PassKey {
-    pub fn create(name: &str, username: &str, password: &str, id: String) -> Self {
+    pub fn create(name: &str, username: &str, password: &str, id: &str) -> Self {
         Self {
-            id,
+            id: id.to_string(),
             ulid: Ulid::new().to_string(),
             name: name.to_string(),
             username: username.to_string(),
@@ -38,6 +39,11 @@ impl PassKey {
 
     pub fn update_password(&mut self, password: &String) {
         self.password = password.to_string();
+    }
+    pub fn get_password(&self) {
+        let mut clipboard = Clipboard::new().unwrap();
+        clipboard.set_text(&self.password).unwrap();
+        println!("Password copied to your clipboard");
     }
 }
 

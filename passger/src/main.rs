@@ -1,4 +1,5 @@
 mod commanders;
+mod master_password;
 mod pass_key;
 mod utils;
 
